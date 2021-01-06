@@ -1,5 +1,55 @@
 package 단계8_컬렉션문제;
 
+/*
+ * [ 단계8 - 기억력 게임 ] 
+ * 
+ * [ class Node ]
+ * - 변수 : int front, int back, boolean open 
+ *
+ * [ class MemoryGame ] 
+ * - Vector<Node> nodeList 선언, 숫자를 저장할 data 배열 선언, 
+ *   숫자의 개수를 저장하는 size 초기화, 스캐너 
+ *   
+ * - (void dataInit() 메서드) 
+ * 	 : data를 size만큼 new로 생성함 
+ *   : for문을 돌려 1~5까지의 숫자를 각각 2개씩 data 배열에 저장함 (총 10개)
+ *   
+ * - (void shuffle() 메서드) 
+ *   : 랜덤함수, for문 돌려 int형식의 temp 활용하여 data[r]과 data[0]의 값 스위치 시킴 
+ * 
+ * - (void nodeInit() 메서드) 
+ *   : 선언만 해두었던 nodeList를 new로 생성함 
+ *   : 0부터 size까지 for문을 돌려 Node node = new Node()로 node클래스 10개를 객체화 시킴 
+ * 	 : node.front에 데이터를 넣어줌 
+ * 	 : nodeList.add(node)로 실질적으로 nodeList에 데이터를 넣음 
+ * 
+ * - (void init() 메서드)
+ *   : dataInit(), shuffle(). nodeInit() 한번에 실행 
+ *   
+ * - (void print() 메서드)
+ * 	 : 0부터 size까지 for문을 돌리는데, 
+ *   : if문) nodeList.get(i).back == 0이면 "[ ]"를 출력함 
+ * 	   else문) "[" + nodeList.get(i).back + "]"를 출력함
+ * 
+ * - (void update() 메서드)
+ *   : while - true문 안에서 
+ *   : print() 메서드로 한 번 출력하고 
+ *   : 사용자로부터 인덱스 1과 2를 입력 받은 후
+ *   : 조건문으로 사용자가 선택한 두 인데스의 open 상태가 모두 false일 때만 카드를 뒤집음
+ *     (이미 맞춘 카드를 다시 뒤집지 않기 위해 예외처리)
+ *     뒤집을 때는 nodeList.get(sel1).back = nodeList.get(sel2).front와 같이 대입함
+ *   : 사용자로부터 인덱스를 입력 받은 후 print() 메서드로 출력 
+ *   : Thred.sleep(1000)을 사용해 1초 간격을 두고 출력
+ *   : if문) 뒤집은 카드의 숫자가 서로 다른 경우 
+ *          카드 뒷면에 다시 0을 대입하여 뒷면으로 원상복귀 시킴 (2개 카드 모두) 
+ *          2개 카드 모두 open 상태를 false로 변경 
+ *     else문) 뒤집은 카드의 숫자가 서로 같으면 두 개 카드 모두 open 상태를 true로 변경        
+ *   
+ * [ 메인 함수 ] 
+ *  MemoryGame을 객체화 시키고, init()과 update() 메서드 실행 	
+ * 
+ */
+
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Vector;
