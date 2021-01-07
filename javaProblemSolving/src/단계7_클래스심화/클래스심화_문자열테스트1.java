@@ -54,9 +54,13 @@ public class 클래스심화_문자열테스트1 {
 
 		/*
 		 * [ 풀이 ] 
-		 * 
-		 *  
-		 * 
+		 * 1. minScore과 minIdx 초기화 시킴
+		 * 2. for문을 돌려 가장 작은 점수를 찾고, 해당 인덱스를 minIdx에 저장
+		 * 3. 현재 학생 배열을 tempSt 배열에 옮겨 저장 
+		 * 4. 학생 수를 한 명 줄여 student 배열 다시 생성
+		 * 5. j라는 변수를 이용해 minIdx에 해당하는 데이터를 제외한 값들을 tempSt배열에서 student배열로 저장 
+		 * 6. size - 1 처리 
+		 * 7. 출력
 		 */
 		
 		int minScore = 0;
