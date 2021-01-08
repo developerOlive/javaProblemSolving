@@ -1,7 +1,7 @@
 package 단계7_클래스심화;
 
 
-class Student3 {
+class Student {
 
 	String name;
 	int score;
@@ -34,22 +34,23 @@ public class 클래스심화_문자열테스트1 {
 		 */
 		
 		
-		String[] dataDetach = data.split("/");
-		int size = Integer.parseInt(dataDetach[0]); 
+		String[] dataDetach = data.split("\n");
+		int dataSize = Integer.parseInt(dataDetach[0]); 
 		
-		Student3[] student = new Student3[size];
-		for (int i=0; i<size; i++) {
-			student[i] = new Student3();
+		Student[] studentList = new Student[dataSize];
+		for (int i=0; i<dataSize; i++) {
+			studentList[i] = new Student();
 		}
 		
-		for (int i=0; i<size; i++) {
-			String[] dataDetach2 = dataDetach[i].split("/");
-			student[i].name = dataDetach2[0];
-			student[i].score = Integer.parseInt(dataDetach2[1]);
+		for (int i=0; i<dataSize; i++) {
+			String[] dataDetach2 = dataDetach[i+1].split("/");
+			studentList[i].name = dataDetach2[0];
+			studentList[i].score = Integer.parseInt(dataDetach2[1]);
 			
-			student[i].print();
+			studentList[i].print();
 		}
 		
+		System.out.println("-------------------------");
 		// 문제2) 꼴등 삭제 후 다시 data에 저장
 
 		/*
@@ -63,29 +64,30 @@ public class 클래스심화_문자열테스트1 {
 		 * 7. 출력
 		 */
 		
-		int minScore = 0;
+		int minScore = studentList[0].score;
 		int minIdx = 0;
 		
-		for (int i=0; i<size; i++) {
-			if (student[i].score < minScore) {
-				minScore = student[i].score;
+		for (int i=0; i<dataSize; i++) {
+			if (studentList[i].score < minScore) {
+				minScore = studentList[i].score;
 				minIdx = i;
 			}
 		}
 		
-		Student3[] tempSt = student;
-		student = new Student3[size-1];
+		Student[] tempStudentList = studentList;
+		studentList = new Student[dataSize-1];
 		
 		int j=0;
-		for (int i=0; i<size; i++) {
+		for (int i=0; i<dataSize; i++) {
 			if (i != minIdx) {
-				student[j] = tempSt[i];
+				studentList[j] = tempStudentList[i];
+				j += 1;
 			}
 		}
-		size = size - 1;
+		dataSize = dataSize - 1;
 		
-		for (int i=0; i<size; i++) {
-			student[i].print();
+		for (int i=0; i<dataSize; i++) {
+			studentList[i].print();
 		}
 		
 	}
