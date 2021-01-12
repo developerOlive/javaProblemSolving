@@ -127,7 +127,7 @@ class Manager1to50 {
 				Node1to50 node = new Node1to50();
 				node.front = frontData[i][j];
 				node.back = backData[i][j];
-				temp[j] = node;
+				temp[j] = node; 
 			}
 			// 질문) 왜 temp를 사용해서 nodeList에 add 하는지? (왜 node로 바로 넣지 않는지?)
 			// 답변) nodeList는 1차원 배열 여러 개로 구성되어있는데, nodeList는 객체 하나임
